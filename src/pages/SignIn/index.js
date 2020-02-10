@@ -1,8 +1,15 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Container, LogoImg } from './styles';
 
-// import { Container } from './styles';
+import logo from '~/assets/imagens/logo.png';
+
+import Input from '~/components/Input';
 
 export default function SignIn() {
-  return <Text>SignIn</Text>;
+  return (
+    <Container>
+      <LogoImg source={logo} />
+      <Input icon="call" placeholder="Informe seu ID de cadastro" />
+    </Container>
+  );
 }
