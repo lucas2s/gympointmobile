@@ -1,17 +1,19 @@
 import React from 'react';
-import { Container, LogoImg } from './styles';
 
+import { Container, LogoImg, Form, FormInput, Submitutton } from './styles';
 import logo from '~/assets/imagens/logo.png';
-
-import Input from '~/components/Input';
-import Button from '~/components/Button';
 
 export default function SignIn() {
   return (
     <Container>
       <LogoImg source={logo} />
-      <Input icon="call" placeholder="Informe seu ID de cadastro" />
-      <Button>Entrar no sistema</Button>
+      <Form>
+        <FormInput
+          keyboardType="numeric"
+          placeholder="Informe seu ID de cadastro"
+        />
+        <Submitutton onPress={() => {}}>Entrar no sistema</Submitutton>
+      </Form>
     </Container>
   );
 }
