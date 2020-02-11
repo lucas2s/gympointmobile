@@ -4,7 +4,9 @@ import { Container, LogoImg, Form, FormInput, Submitutton } from './styles';
 import logo from '~/assets/imagens/logo.png';
 
 export default function SignIn() {
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log('handleSubmit');
+  }
   return (
     <Container>
       <LogoImg source={logo} />
