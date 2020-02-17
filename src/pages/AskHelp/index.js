@@ -5,18 +5,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // import { Container } from './styles';
 
-export default function CheckIns() {
+export default function AskHelp() {
   return (
     <View>
-      <Text>CheckIns</Text>
+      <Text>AskHelp</Text>
     </View>
   );
 }
 
-CheckIns.navigationOptions = {
-  tabBarLabel: 'Check-ins',
+AskHelp.navigationOptions = {
+  tabBarLabel: 'Pedir ajuda',
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="check-box" size={20} color={tintColor} />
+    <Icon name="help" size={20} color={tintColor} />
   ),
-  headerTitle: 'Check-ins',
 };
