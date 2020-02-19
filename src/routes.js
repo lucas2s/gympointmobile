@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import SignIn from '~/pages/SignIn';
-import CheckIns from '~/pages/CheckIns';
+import CheckIns from '~/pages/Checkin';
 import AskHelp from '~/pages/AskHelp';
 import Header from '~/components/Header';
 

@@ -33,6 +33,6 @@ export const FormInput = styled(Input)`
   elevation: 10;
 `;
 
-export const Submitutton = styled(Button)`
+export const SubmitButton = styled(Button)`
   margin-top: 5px;
 `;

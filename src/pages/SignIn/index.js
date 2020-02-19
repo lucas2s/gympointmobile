@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, LogoImg, Form, FormInput, Submitutton } from './styles';
+import { Container, LogoImg, Form, FormInput, SubmitButton } from './styles';
 import logo from '~/assets/image/logo.png';
 import { signInRequest } from '~/store/modules/auth/actions';
 
@@ -25,9 +25,9 @@ export default function SignIn() {
           value={id}
           onChangeText={setId}
         />
-        <Submitutton loading={loading} onPress={handleSubmit}>
+        <SubmitButton loading={loading} onPress={handleSubmit}>
           Entrar no sistema
-        </Submitutton>
+        </SubmitButton>
       </Form>
     </Container>
   );
