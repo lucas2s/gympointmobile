@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useSelector } from 'react-redux';
+import { withNavigationFocus } from 'react-navigation';
 
 import { Container, NewAnswer, Loading, List } from './styles';
 import AnswerList from '~/components/AnswerList';
 
 import api from '~/services/api';
 
-export default function AskHelp() {
-  const [answers, setAnswers] = useState([]);
+function AskHelp({ navigation, isFocused }) {
+  const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const student = useSelector(state => state.auth.student);
@@ -17,41 +18,56 @@ export default function AskHelp() {
 
   useEffect(() => {
     async function loadCheckins() {
-      try {
-        setLoading(true);
-        const response = await api.get(`/students/${id}/help-orders`);
+      setLoading(true);
+      if (isFocused) {
+        try {
+          setLoading(true);
+          const response = await api.get(`/students/${id}/help-orders`);
 
-        setAnswers(response.data.helpOrders);
-        setLoading(false);
-      } catch (err) {
-        setAnswers([]);
-        setLoading(false);
+          setQuestions(response.data.helpOrders);
+          setLoading(false);
+        } catch (err) {
+          setQuestions([]);
+          setLoading(false);
+        }
+      } else {
+        setQuestions([]);
       }
     }
     loadCheckins();
-  }, [id]);
+  }, [id, isFocused]);
 
   return (
     <Container>
-      <NewAnswer>Novo pedido de auxílio</NewAnswer>
+      <NewAnswer onPress={() => navigation.navigate('AskHelpQuestion')}>
+        Novo pedido de auxílio
+      </NewAnswer>
       {loading ? (
         <Loading>
           <ActivityIndicator color="#EE4E62" size="large" />
         </Loading>
       ) : (
         <List
-          data={answers}
+          data={questions}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <AnswerList data={item} />}
+          renderItem={({ item: question }) => (
+            <AnswerList
+              data={question}
+              details={() =>
+                navigation.navigate('AskHelpDetails', { question })
+              }
+            />
+          )}
         />
       )}
     </Container>
   );
 }
 
-AskHelp.navigationOptions = {
-  tabBarLabel: 'Pedir ajuda',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="help" size={20} color={tintColor} />
-  ),
+AskHelp.propTypes = {
+  navigation: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
+    .isRequired,
+  isFocused: PropTypes.bool.isRequired,
 };
+
+export default withNavigationFocus(AskHelp);
