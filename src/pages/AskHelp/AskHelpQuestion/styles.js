@@ -13,7 +13,7 @@ export const Form = styled.View`
   display: flex;
 `;
 
-export const TextQuestion = styled.TextInput`
+export const TextQuestion = styled(Input)`
   align-items: flex-start;
   justify-content: flex-start;
   background: #ffffff;
